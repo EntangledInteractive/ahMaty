@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class MyHub : MonoBehaviour {
-    private NetworkManager netManger;
+public class MyHub : NetworkManager {
+    
 	// Use this for initialization
 	void Start () {
-        netManger = GetComponent<NetworkManager>();
+       
 	}
 	
 	// Update is called once per frame
@@ -17,11 +17,11 @@ public class MyHub : MonoBehaviour {
     public void MyStartHost()
     {
         Debug.Log("Starting host " + Time.timeSinceLevelLoad);
-        netManger.StartHost();
+        StartHost();
 
     }
 
-    void OnStartHost()
+   public  override void OnStartHost()
     {
         Debug.Log("Host Start " + Time.timeSinceLevelLoad);
     }
