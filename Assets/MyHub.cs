@@ -16,13 +16,27 @@ public class MyHub : NetworkManager {
 	}
     public void MyStartHost()
     {
-        Debug.Log("Starting host " + Time.timeSinceLevelLoad);
+        Debug.Log(Time.timeSinceLevelLoad+" Starting host. "  );
         StartHost();
 
     }
 
    public  override void OnStartHost()
     {
-        Debug.Log("Host Start " + Time.timeSinceLevelLoad);
+        Debug.Log( Time.timeSinceLevelLoad+" Host Start. ");
+    }
+    public override void OnStartClient(NetworkClient myClient)
+    {
+        Debug.Log(Time.timeSinceLevelLoad + " Client Start rerquested. ");
+        InvokeRepeating("printdot",0f, 1f);
+    }
+    public override void OnClientConnect(NetworkConnection conn)
+    {
+        Debug.Log(Time.timeSinceLevelLoad + " Client id connect to IP: "+ conn.address);
+        CancelInvoke();
+    }
+    void printdot()
+    {
+        Debug.Log(".");
     }
 }
