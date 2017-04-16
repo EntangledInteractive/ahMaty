@@ -7,13 +7,17 @@ using UnityEngine.Networking;
 public class Player : NetworkBehaviour{
 
     private Vector3 inputValue;
+    private GameObject myCamera;
 	// Use this for initialization
 	void Start () {
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
+    public override void OnStartLocalPlayer()
+    {
+        GetComponentInChildren<Camera>().enabled = true;
+    }
+    // Update is called once per frame
+    void Update () {
         if (!isLocalPlayer)
         {
             return;
